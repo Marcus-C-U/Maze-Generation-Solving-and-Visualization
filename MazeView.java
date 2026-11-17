@@ -1,13 +1,16 @@
-import java.awt.Canvas;
+import java.awt.*;
+import java.util.List;
 
 public class MazeView extends Canvas {
 
-    Cell[][] grid;
+    private final Cell[][] grid;
+    private final List<Cell> solutionPath;
 
-    public MazeView(Cell[][] grid) {
+    public MazeView(Cell[][] grid, List<Cell> solutionPath) {
         
         this.grid = grid;
-
+        this.solutionPath = solutionPath;
+        
     }
 
     private void DrawCell(java.awt.Graphics g, Cell cell, int left, int top, int dimensions) {
@@ -52,6 +55,7 @@ public class MazeView extends Canvas {
             dimensions = width/grid.length;
         
         } 
+        
         else {
 
             dimensions = height/grid.length;
