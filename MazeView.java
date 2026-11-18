@@ -13,7 +13,7 @@ public class MazeView extends Canvas {
         
     }
 
-    private void DrawCell(java.awt.Graphics g, Cell cell, int left, int top, int dimensions) {
+    private void DrawCell(java.awt.Graphics g, Cell cell, int left, int top, int dimensions) { 
         
         top = top + 1;
 
@@ -40,11 +40,12 @@ public class MazeView extends Canvas {
             g.drawLine(left, top + dimensions, left + dimensions, top + dimensions);
         
         }
+
     }
 
     @Override 
     public void paint(java.awt.Graphics g) {
-
+        
         super.paint(g);
         int width = getWidth();
         int height = getHeight();
@@ -55,7 +56,7 @@ public class MazeView extends Canvas {
             dimensions = width/grid.length;
         
         } 
-        
+
         else {
 
             dimensions = height/grid.length;
@@ -74,6 +75,37 @@ public class MazeView extends Canvas {
                 DrawCell(g, cell, x, y, dimensions);
 
             }
+
+        }
+        
+        Graphics2D pathGraphics = (Graphics2D) g.create();
+        pathGraphics.setColor(Color.BLUE);
+        pathGraphics.setStroke(new BasicStroke(Math.max(2, dimensions / 8)));
+
+
+        for (int i = 1; i < solutionPath.size(); i++) {
+ 
+            try {
+
+                Thread.sleep(100);
+
+            } 
+        
+            catch (InterruptedException e) {
+
+                e.printStackTrace();
+
+            }
+
+            Cell previous = solutionPath.get(i - 1);
+            Cell current = solutionPath.get(i);
+
+            int previousX = previous.col * dimensions + dimensions / 2;
+            int previousY = previous.row * dimensions + dimensions / 2;
+            int currentX = current.col * dimensions + dimensions / 2;
+            int currentY = current.row * dimensions + dimensions / 2;
+            
+            pathGraphics.drawLine(previousX, previousY, currentX, currentY);
 
         }
 
