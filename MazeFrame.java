@@ -233,7 +233,9 @@ public class MazeFrame extends JFrame {
         
     }
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
+        
+        if(N>1 &&M>1){
 
         SwingUtilities.invokeLater(() -> {
 
@@ -241,6 +243,14 @@ public class MazeFrame extends JFrame {
             mazeFrame.setVisible(true);
 
         });
+
+        }
+
+        else if(N<=1||M<=1){
+
+            System.out.println("Please enter a valid number of rows and columns.");
+
+        }
     
     }
     
